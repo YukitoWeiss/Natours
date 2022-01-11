@@ -27,7 +27,7 @@ Dark green: #28b485
 body {
   padding: 30px;
 
-  font-family: 'Lato', sans-serif;
+  font-family: "Lato", sans-serif;
   font-size: 16px;
   font-weight: 400;
   line-height: 1.7;
@@ -42,9 +42,8 @@ body {
   height: 95vh;
   position: relative;
 
-  background-image: 
-  linear-gradient(to right bottom, var(--gradient)), 
-  url('../img/hero.jpg');
+  background-image: linear-gradient(to right bottom, var(--gradient)),
+    url("../img/hero.jpg");
   background-size: cover;
   background-position: top;
 
@@ -67,9 +66,13 @@ body {
   top: 40%;
   left: 50%;
   transform: translate(-50%, -50%);
+
+  text-align: center;
 }
 
 .heading-primary {
+  margin-bottom: 60px;
+
   color: #fff;
   text-transform: uppercase;
 
@@ -95,7 +98,7 @@ body {
   font-size: 20px;
   font-weight: 700;
   letter-spacing: 17.4px;
-  
+
   animation: moveInRight 1s ease-out;
 }
 
@@ -128,5 +131,79 @@ body {
   100% {
     opacity: 1;
     transform: translateX(0);
+  }
+}
+
+.btn:link,
+.btn:visited {
+  display: inline-block;
+  padding: 15px 40px;
+  position: relative;
+
+  text-transform: uppercase;
+  text-decoration: none;
+
+  border-radius: 100px;
+
+  transition: all 0.2s;
+}
+
+.btn-animated {
+  /* animation-delay: .75s */
+  animation: moveInBottom 0.5s ease-out 0.75s;
+  /* придает параметры анимации с первого шага всему элементу(в данном случае нулевую опасити, этот прием сделаем элемент невидимым перед началом анимации пока он будет ожидать своего начала через .75секунд задержки */
+  animation-fill-mode: backwards;
+}
+
+.btn:hover {
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+
+  transform: translateY(-3px);
+}
+
+.btn:active {
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+
+  transform: translateY(-1px);
+}
+
+.btn::after {
+  content: "";
+  display: inline-block;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+
+  border-radius: 100px;
+
+  transition: all 0.4s;
+}
+
+.btn:hover::after {
+  transform: scaleX(1.4) scaleY(1.6);
+  opacity: 0;
+}
+
+.btn-white {
+  color: var(--clr-gray-400);
+  background-color: #fff;
+}
+
+.btn-white::after {
+  background-color: #fff;
+}
+
+@keyframes moveInBottom {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
