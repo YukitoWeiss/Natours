@@ -1,89 +1,4 @@
 @charset "UTF-8";
-*,
-*::before,
-*::after {
-  margin: 0;
-  padding: 0;
-  /* border-box на body, остальные элементы просто его наследуют, считается лучшей практикой, чем установки сразу бордер-бокса на все элементы, для облегчения работы плагинов
-  https://css-tricks.com/inheriting-box-sizing-probably-slightly-better-best-practice/
-  */
-  box-sizing: inherit;
-}
-
-/* Возможно следуюет добавлять это правило, для респонсив картинок, чтобы при наличии бордера они не ресайзились сами */
-/* img {
-  box-sizing: content-box;
-} */
-html {
-  font-size: 62.5%;
-}
-
-body {
-  padding: 3rem;
-  box-sizing: border-box;
-  font-family: "Lato", sans-serif;
-  font-weight: 400;
-  line-height: 1.7;
-  color: #777;
-}
-
-/****************************/
-/*********** HEADER *********/
-/****************************/
-.header {
-  height: 95vh;
-  position: relative;
-  background-image: linear-gradient(to right bottom, rgba(126, 213, 111, 0.8), rgba(40, 180, 133, 0.8)), url("../img/hero.jpg");
-  background-size: cover;
-  background-position: top;
-  /* Позволяет нарисовать геометрическую фигуру обрезав лишнее через координаты */
-  clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
-}
-
-.header__logo-box {
-  position: absolute;
-  top: 4rem;
-  left: 4rem;
-}
-
-.header__logo {
-  height: 3.5rem;
-}
-
-.header__text-box {
-  position: absolute;
-  top: 40%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  text-align: center;
-}
-
-.heading-primary {
-  margin-bottom: 6rem;
-  color: #fff;
-  text-transform: uppercase;
-  /* Фикс для анимаций, которые по окончанию проигрыванию немного прыгают вверх и остаются там */
-  backface-visibility: hidden;
-}
-
-.heading-primary--main {
-  display: block;
-  font-size: 6rem;
-  font-weight: 400;
-  letter-spacing: 3.5rem;
-  animation-name: moveInLeft;
-  animation-duration: 1s;
-  animation-timing-function: ease-out;
-}
-
-.heading-primary--sub {
-  display: block;
-  font-size: 2rem;
-  font-weight: 700;
-  letter-spacing: 1.75rem;
-  animation: moveInRight 1s ease-out;
-}
-
 @keyframes moveInLeft {
   0% {
     opacity: 0;
@@ -110,8 +25,72 @@ body {
     transform: translateX(0);
   }
 }
-.btn:link,
-.btn:visited {
+@keyframes moveInBottom {
+  0% {
+    opacity: 0;
+    transform: translateY(3rem);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  /* border-box на body, остальные элементы просто его наследуют, считается лучшей практикой, чем установки сразу бордер-бокса на все элементы, для облегчения работы плагинов
+  https://css-tricks.com/inheriting-box-sizing-probably-slightly-better-best-practice/
+  */
+  box-sizing: inherit;
+}
+
+/* Возможно следуюет добавлять это правило, для респонсив картинок, чтобы при наличии бордера они не ресайзились сами */
+/* img {
+  box-sizing: content-box;
+} */
+html {
+  font-size: 62.5%;
+}
+
+body {
+  box-sizing: border-box;
+}
+
+body {
+  padding: 3rem;
+  font-family: "Lato", sans-serif;
+  font-weight: 400;
+  line-height: 1.7;
+  color: #777;
+}
+
+.heading-primary {
+  margin-bottom: 6rem;
+  color: #fff;
+  text-transform: uppercase;
+  /* Фикс для анимаций, которые по окончанию проигрыванию немного прыгают вверх и остаются там */
+  backface-visibility: hidden;
+}
+.heading-primary--main {
+  display: block;
+  font-size: 6rem;
+  font-weight: 400;
+  letter-spacing: 3.5rem;
+  animation-name: moveInLeft;
+  animation-duration: 1s;
+  animation-timing-function: ease-out;
+}
+.heading-primary--sub {
+  display: block;
+  font-size: 2rem;
+  font-weight: 700;
+  letter-spacing: 1.75rem;
+  animation: moveInRight 1s ease-out;
+}
+
+.btn:link, .btn:visited {
   display: inline-block;
   padding: 1.5rem 4rem;
   position: relative;
@@ -121,24 +100,24 @@ body {
   border-radius: 10rem;
   transition: all 0.2s;
 }
-
+.btn:hover {
+  box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.2);
+  transform: translateY(-3px);
+}
+.btn:hover::after {
+  transform: scaleX(1.4) scaleY(1.6);
+  opacity: 0;
+}
+.btn:active {
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2);
+  transform: translateY(-1px);
+}
 .btn--animated {
   /* animation-delay: .75s */
   animation: moveInBottom 0.5s ease-out 0.75s;
   /* придает параметры анимации с первого шага всему элементу(в данном случае нулевую опасити, этот прием сделаем элемент невидимым перед началом анимации пока он будет ожидать своего начала через .75секунд задержки */
   animation-fill-mode: backwards;
 }
-
-.btn:hover {
-  box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.2);
-  transform: translateY(-3px);
-}
-
-.btn:active {
-  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2);
-  transform: translateY(-1px);
-}
-
 .btn::after {
   content: "";
   display: inline-block;
@@ -151,30 +130,37 @@ body {
   border-radius: 10rem;
   transition: all 0.4s;
 }
-
-.btn:hover::after {
-  transform: scaleX(1.4) scaleY(1.6);
-  opacity: 0;
-}
-
 .btn--white {
   color: #777;
   background-color: #fff;
 }
-
 .btn--white::after {
   background-color: #fff;
 }
 
-@keyframes moveInBottom {
-  0% {
-    opacity: 0;
-    transform: translateY(3rem);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-  }
+.header {
+  height: 95vh;
+  position: relative;
+  background-image: linear-gradient(to right bottom, rgba(126, 213, 111, 0.8), rgba(40, 180, 133, 0.8)), url("../img/hero.jpg");
+  background-size: cover;
+  background-position: top;
+  /* Позволяет нарисовать геометрическую фигуру обрезав лишнее через координаты */
+  clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
+}
+.header__logo-box {
+  position: absolute;
+  top: 4rem;
+  left: 4rem;
+}
+.header__logo {
+  height: 3.5rem;
+}
+.header__text-box {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
 }
 
 /*# sourceMappingURL=style.css.map */

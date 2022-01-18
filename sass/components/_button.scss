@@ -1,0 +1,64 @@
+.btn {
+  &:link,
+  &:visited {
+    display: inline-block;
+    padding: 1.5rem 4rem;
+    position: relative;
+
+    font-size: 1.6rem;
+    text-transform: uppercase;
+    text-decoration: none;
+
+    border-radius: 10rem;
+
+    transition: all 0.2s;
+  }
+
+  &:hover {
+    box-shadow: 0 1rem 2rem rgba($color-black, 0.2);
+
+    transform: translateY(-3px);
+
+    &::after {
+      transform: scaleX(1.4) scaleY(1.6);
+      opacity: 0;
+    }
+  }
+
+  &:active {
+    box-shadow: 0 0.5rem 1rem rgba($color-black, 0.2);
+
+    transform: translateY(-1px);
+  }
+
+  &--animated {
+    /* animation-delay: .75s */
+    animation: moveInBottom 0.5s ease-out 0.75s;
+    /* придает параметры анимации с первого шага всему элементу(в данном случае нулевую опасити, этот прием сделаем элемент невидимым перед началом анимации пока он будет ожидать своего начала через .75секунд задержки */
+    animation-fill-mode: backwards;
+  }
+
+  &::after {
+    content: "";
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+
+    border-radius: 10rem;
+
+    transition: all 0.4s;
+  }
+
+  &--white {
+    color: $color-grey-dark;
+    background-color: $color-white;
+
+    &::after {
+      background-color: $color-white;
+    }
+  }
+}

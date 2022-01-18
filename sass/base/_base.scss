@@ -1,0 +1,23 @@
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  /* border-box на body, остальные элементы просто его наследуют, считается лучшей практикой, чем установки сразу бордер-бокса на все элементы, для облегчения работы плагинов
+  https://css-tricks.com/inheriting-box-sizing-probably-slightly-better-best-practice/
+  */
+  box-sizing: inherit;
+}
+
+/* Возможно следуюет добавлять это правило, для респонсив картинок, чтобы при наличии бордера они не ресайзились сами */
+/* img {
+  box-sizing: content-box;
+} */
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  box-sizing: border-box;
+}
