@@ -1,0 +1,93 @@
+.card {
+  /* Если не указать высоту и родителя, элементы которого абсолютно поцизионированы, то его высота схлопнется и будет равна нулю, этот эффект похож на клирфикс флоатов с той лишь разницей, что для флоатов существует клирфикс, а для абсолютного позиционирования - нет. Поэтому нужно придать аналогичную высоту родителю, чтобы он не схлопнулся после вырывания его дочерних элементов из потока.*/
+  height: 50rem;
+  position: relative;
+
+  perspective: 150rem;
+  -moz-perspective: 150rem;
+
+  &__side {
+    width: 100%;
+    height: 50rem;
+    position: absolute;
+    top: 0;
+    left: 0;
+    /* Картинка выходит из границ бордер-радиуса */
+    overflow: hidden;
+
+    font-size: 2rem;
+    color: white;
+
+    border-radius: 3px;
+    box-shadow: 0 1.5rem 4rem rgba($color-black, 0.15);
+
+    /* Прячет заднюю сторону элемента при трансформе */
+    backface-visibility: hidden;
+
+    transition: all 0.8s ease;
+
+    &--front {
+      background-color: $color-white;
+    }
+
+    &--back {
+      transform: rotateY(180deg);
+
+      &-1 {
+        background-image: linear-gradient(
+          to bottom right,
+          $color-secondary-light,
+          $color-secondary-dark
+        );
+      }
+
+      &-2 {
+        background-image: linear-gradient(
+          to bottom right,
+          $color-primary-light,
+          $color-primary-dark
+        );
+      }
+
+      &-3 {
+        background-image: linear-gradient(
+          to bottom right,
+          $color-tertiary-light,
+          $color-tertiary-dark
+        );
+      }
+    }
+  }
+
+  &:hover &__side--front {
+    transform: rotateY(-180deg);
+  }
+
+  &:hover &__side--back {
+    transform: rotateY(0);
+  }
+
+  // FRONT SIDE STYLING
+  &__picture {
+    /* результат высоты получен методом эксперимента */
+    height: 23rem;
+
+    background-size: cover;
+    background-blend-mode: screen;
+
+    clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+
+    &--1 {
+      /* Указание пути ведем от папки CSS с скомпилированным из scss файлов, поэтому всего на один уровень выше */
+      background-image: linear-gradient(
+          $color-secondary-light,
+          $color-secondary-dark
+        ),
+        url("../img/nat-5.jpg");
+    }
+    &--2 {
+    }
+    &--3 {
+    }
+  }
+}
