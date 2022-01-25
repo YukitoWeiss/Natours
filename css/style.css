@@ -206,21 +206,19 @@ body {
 
 .card {
   /* Если не указать высоту и родителя, элементы которого абсолютно поцизионированы, то его высота схлопнется и будет равна нулю, этот эффект похож на клирфикс флоатов с той лишь разницей, что для флоатов существует клирфикс, а для абсолютного позиционирования - нет. Поэтому нужно придать аналогичную высоту родителю, чтобы он не схлопнулся после вырывания его дочерних элементов из потока.*/
-  height: 50rem;
+  height: 52rem;
   position: relative;
   perspective: 150rem;
   -moz-perspective: 150rem;
 }
 .card__side {
   width: 100%;
-  height: 50rem;
+  height: 52rem;
   position: absolute;
   top: 0;
   left: 0;
   /* Картинка выходит из границ бордер-радиуса */
   overflow: hidden;
-  font-size: 2rem;
-  color: white;
   border-radius: 3px;
   box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, 0.15);
   /* Прячет заднюю сторону элемента при трансформе */
@@ -253,12 +251,49 @@ body {
   height: 23rem;
   background-size: cover;
   background-blend-mode: screen;
+  -webkit-clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
   clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
 }
 .card__picture--1 {
   /* Указание пути ведем от папки CSS с скомпилированным из scss файлов, поэтому всего на один уровень выше */
   background-image: linear-gradient(#ffb900, #ff7730), url("../img/nat-5.jpg");
 }
+.card__heading {
+  width: 75%;
+  position: absolute;
+  top: 12rem;
+  right: 2rem;
+  font-size: 2.8rem;
+  font-weight: 300;
+  color: #fff;
+  text-transform: uppercase;
+  text-align: right;
+}
+.card__heading-span {
+  padding: 1rem 1.5rem;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+}
+.card__heading-span--1 {
+  background-image: linear-gradient(to right bottom, rgba(255, 185, 0, 0.85), rgba(255, 119, 48, 0.85));
+}
+.card__details {
+  padding: 3rem;
+}
+.card__details ul {
+  width: 80%;
+  margin: 0 auto;
+  list-style: none;
+}
+.card__details ul li {
+  padding: 1rem;
+  font-size: 1.5rem;
+  text-align: center;
+}
+.card__details ul li:not(:last-child) {
+  border-bottom: 1px solid #eee;
+}
+
 .composition {
   position: relative;
 }
@@ -323,6 +358,7 @@ body {
   background-size: cover;
   background-position: top;
   /* Позволяет нарисовать геометрическую фигуру обрезав лишнее через координаты */
+  -webkit-clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
   clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
 }
 .header__logo-box {
