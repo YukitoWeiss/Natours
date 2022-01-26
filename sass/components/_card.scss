@@ -3,8 +3,8 @@
   height: 52rem;
   position: relative;
 
-  perspective: 150rem;
   -moz-perspective: 150rem;
+  perspective: 150rem;
 
   &__side {
     width: 100%;
@@ -71,6 +71,9 @@
 
     background-size: cover;
     background-blend-mode: screen;
+    /* clip-path при overflow:hidden ломает бордер-радиус у родителя, поэтому его нужно прописать здесь */
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
 
     -webkit-clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
     clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
@@ -84,8 +87,19 @@
         url("../img/nat-5.jpg");
     }
     &--2 {
+      background-image: linear-gradient(
+          $color-primary-light,
+          $color-primary-dark
+        ),
+        url("../img/nat-6.jpg");
     }
+
     &--3 {
+      background-image: linear-gradient(
+          $color-tertiary-light,
+          $color-tertiary-dark
+        ),
+        url("../img/nat-7.jpg");
     }
   }
 
@@ -114,6 +128,22 @@
         rgba($color-secondary-dark, 0.85)
       );
     }
+
+    &--2 {
+      background-image: linear-gradient(
+        to right bottom,
+        rgba($color-primary-light, 0.85),
+        rgba($color-primary-dark, 0.85)
+      );
+    }
+
+    &--3 {
+      background-image: linear-gradient(
+        to right bottom,
+        rgba($color-tertiary-light, 0.85),
+        rgba($color-tertiary-dark, 0.85)
+      );
+    }
   }
 
   &__details {
@@ -136,5 +166,33 @@
         }
       }
     }
+  }
+  // BACK SIDE STYLE
+  &__cta {
+    /* наличие заданной ширины позволит кнопке отображаться нормально */
+    width: 90%;
+
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    text-align: center;
+  }
+
+  &__price-box {
+    margin-bottom: 8rem;
+
+    color: $color-white;
+  }
+
+  &__price-only {
+    font-size: 1.4rem;
+    text-transform: uppercase;
+  }
+
+  &__price-value {
+    font-size: 6rem;
+    font-weight: 100;
   }
 }
