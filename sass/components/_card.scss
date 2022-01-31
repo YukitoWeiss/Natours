@@ -15,7 +15,7 @@
     /* Картинка выходит из границ бордер-радиуса */
     overflow: hidden;
 
-    border-radius: 3px;
+    border-radius: $default-border-radius;
     box-shadow: 0 1.5rem 4rem rgba($color-black, 0.15);
 
     /* Прячет заднюю сторону элемента при трансформе */
@@ -72,8 +72,8 @@
     background-size: cover;
     background-blend-mode: screen;
     /* clip-path при overflow:hidden ломает бордер-радиус у родителя, поэтому его нужно прописать здесь */
-    border-top-left-radius: 3px;
-    border-top-right-radius: 3px;
+    border-top-left-radius: $default-border-radius;
+    border-top-right-radius: $default-border-radius;
 
     -webkit-clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
     clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);

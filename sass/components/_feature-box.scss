@@ -5,7 +5,7 @@
   text-align: center;
 
   background-color: rgba($color-white, 0.8);
-  border-radius: 3px;
+  border-radius: $default-border-radius;
   box-shadow: 0 1.5rem 4rem rgba($color-black, 0.15);
 
   transition: transform 0.3s;
